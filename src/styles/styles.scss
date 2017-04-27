@@ -1,0 +1,128 @@
+/* Styles */
+$body-background-color: #E6E6E6;
+$cell-background-color: #9A8297;
+$cell-hover-background-color: #D0782A;
+$field-border-radius: 6px;
+$field-size: 300px;
+$tic-tac-toe-cell-padding: 10px;
+$field-padding: 5px;
+$cell-margin: 5px;
+$cell-size: $field-size/3 - $cell-margin*2;
+$symbol-thickness: 6px;
+$symbol-roundness: 3px;
+$symbol-size: 50px;
+$oSize: $symbol-size - $symbol-thickness;
+  
+$new-game-button--height: 20px;
+$new-game-button--color: #9A8297;
+$new-game-button--hover-color: #D0782A;
+$new-game-button--border-radius: 20px;
+
+$title-label-color: #D0782A;
+
+body {
+  background-color: $body-background-color;
+  .tic-tac-toe--field {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    border-radius: $field-border-radius;
+    width: $field-size;
+    height: $field-size;
+    padding: $field-padding;
+    .tic-tac-toe--end-game-popover {
+      width: $field-size;
+      height: $field-size;
+      background-color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: $field-border-radius;
+      transition: visibility 0s 0.3s, opacity 0.3s linear;
+      opacity: 1;
+      visibility: visible;
+      &.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .tic-tac-toe--new-game-button {
+        height: $new-game-button--height;
+        background-color: $new-game-button--color;
+        border-radius: $new-game-button--border-radius;
+        color: white;
+        margin: auto;
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        cursor: pointer;
+        transform: translate(-50%, -50%);
+        transition: background-color 0.3s;
+        &:hover {
+          background-color: $new-game-button--hover-color
+        }
+      }
+      h1.tic-tac-toe--title-label {
+        color: $title-label-color;
+        margin: 30px auto;
+        text-align: center;
+      }
+    }
+    .tic-tac-toe--cells-matrix {
+      display: flex;
+      flex-wrap: wrap;
+      .tic-tac-toe-cell {
+        background-color: $cell-background-color;
+        margin: $cell-margin;
+        width: $cell-size;
+        height: $cell-size;
+        border-radius: $field-border-radius;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        position: relative;
+        &:hover {
+          background-color: $cell-hover-background-color
+        }
+        &.xSymbol {
+          &:before, &:after {
+            position: absolute;
+            width: $symbol-thickness;
+            height: $symbol-size;
+            background-color: white;
+            display: block;
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: $symbol-roundness;
+          }
+          &:before {
+            transform: translate(-50%, -50%) rotate(45deg);
+          }
+          &:after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+          }
+        }
+        &.oSymbol {
+          &:after {
+            position: absolute;
+            display: block;
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            border: solid $symbol-thickness white;
+            width: $oSize;
+            height: $oSize;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+  }
+}
